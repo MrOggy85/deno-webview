@@ -30,6 +30,14 @@ window.addEventListener("keypress", (event) => {
 })
 `;
 
-webview.eval(copyPasteShortcut);
+const evalResult = webview.eval(copyPasteShortcut);
+console.log('evalResult', evalResult)
 
-await webview.run();
+try {
+  await webview.run();
+  console.log('closed webview');
+} catch (error) {
+  console.log('error', error)
+}
+
+Deno.exit(0);
