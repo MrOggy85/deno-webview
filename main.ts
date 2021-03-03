@@ -1,3 +1,5 @@
+Deno.env.set('PLUGIN_URL', 'hello')
+
 import { config, Webview } from "./deps.ts";
 
 let URL = "";
@@ -21,6 +23,7 @@ const copyPasteShortcut = `
 window.addEventListener("keypress", (event) => {
   if (event.metaKey && event.key === 'c') {
     document.execCommand("copy")
+    navigator.clipboard.writeText(window.getSelection().toString())
     event.preventDefault();
   }
   if (event.metaKey && event.key === 'v') {
